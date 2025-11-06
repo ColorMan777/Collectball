@@ -4,7 +4,17 @@ public class PlayerControl : MonoBehaviour
 
 {
     public float thrust = 10f;
+    public float jump_force = 300f;
+    public GameObject cam_pivot;
+    public int items = 0;
+
     private Rigidbody rb;
+
+    [Header("Ground Detection Settings")]
+    public float checkDistance = 0.1f;
+    public LayerMask groundLayer; // Assign in inspector
+
+    private bool isGrounded;
 
     void Start()
     {
@@ -13,11 +23,55 @@ public class PlayerControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        
-        if (Input.GetKey(KeyCode.W))
-            rb.AddForce(transform.forward * thrust);
+        // Raycast downward from the object's position
+        isGrounded = Physics.Raycast(cam_pivot.transform.position, Vector3.down, checkDistance, groundLayer);
 
-        if (Input.GetKey(KeyCode.S))
-            rb.AddForce(-transform.forward * thrust);
+/*         if (isGrounded)
+            Debug.Log("Grounded ✅");
+        else
+            Debug.Log("Not grounded ❌"); */
+
+        
+        if (Input.GetKey(KeyCode.W)){
+            //rb.AddForce(Vector3.forward * thrust);
+            rb.AddForce(cam_pivot.transform.forward * thrust);
+        }
+
+        if (Input.GetKey(KeyCode.S)){
+            //rb.AddForce(-Vector3.forward * thrust);
+            rb.AddForce(-cam_pivot.transform.forward * thrust);
+        }
+
+        
+        if (Input.GetKey(KeyCode.A)){
+            rb.AddForce(-cam_pivot.transform.right * thrust);
+        }
+            
+        if (Input.GetKey(KeyCode.D)){
+            rb.AddForce(cam_pivot.transform.right * thrust);
+        }
+            
+
     }
+
+    void Update(){
+
+        // Jump dans update parce que dans fixed update il n'est pas assez réactif
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true){
+            rb.AddForce(Vector3.up * jump_force);
+            //Debug.Log("Jump");
+        }
+            
+    }
+
+    void OnTriggerEnter(Collider trigger){
+        //Debug.Log(trigger.gameObject.layer);
+        if (trigger.gameObject.layer == LayerMask.NameToLayer("Collectibles")){
+            
+            items += 1;
+
+        }
+
+    }
+
 }
