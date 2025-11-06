@@ -15,6 +15,7 @@ public class PlayerControl : MonoBehaviour
     public LayerMask groundLayer; // Assign in inspector
 
     private bool isGrounded;
+    private Animation keyAnim;
 
     void Start()
     {
@@ -69,6 +70,10 @@ public class PlayerControl : MonoBehaviour
         if (trigger.gameObject.layer == LayerMask.NameToLayer("Collectibles")){
             
             items += 1;
+
+            Animation anim  = trigger.gameObject.GetComponent<Animation>();
+            anim.CrossFade("KeyFade", 0.1f);
+            //trigger.gameObject.animator.Play("KeyFade");
 
         }
 
