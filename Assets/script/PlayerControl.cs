@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class PlayerControl : MonoBehaviour
 
@@ -7,6 +8,7 @@ public class PlayerControl : MonoBehaviour
     public float jump_force = 300f;
     public GameObject cam_pivot;
     public int items = 0;
+    public TMP_Text itemText;
 
     private Rigidbody rb;
 
@@ -20,6 +22,7 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        UpdateItemText();
     }
 
     void FixedUpdate()
@@ -70,12 +73,20 @@ public class PlayerControl : MonoBehaviour
         if (trigger.gameObject.layer == LayerMask.NameToLayer("Collectibles")){
             
             items += 1;
+            GlobalStats.Instance.collected_items = items;
+            UpdateItemText();
 
             Animation anim  = trigger.gameObject.GetComponent<Animation>();
             anim.CrossFade("KeyFade", 0.1f);
             //trigger.gameObject.animator.Play("KeyFade");
 
         }
+
+    }
+
+    void UpdateItemText(){
+
+        itemText.text = "Items : " + items.ToString() + " / " + GlobalStats.Instance.max_items.ToString();
 
     }
 
