@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class KeyScript : MonoBehaviour
 {
+    public bool collected = false;
 
     void OnEnable()
     {
@@ -25,4 +26,9 @@ public class KeyScript : MonoBehaviour
         Destroy(gameObject);
 
     }
+
+    public void PlaySound(){
+        GetComponent<AudioSource>().Play();
+    }
+
 }

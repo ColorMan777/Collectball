@@ -18,6 +18,7 @@ public class PlayerControl : MonoBehaviour
 
     private bool isGrounded;
     private Animation keyAnim;
+    private bool inLevelEnd = false;
 
     void Start()
     {
@@ -55,6 +56,7 @@ public class PlayerControl : MonoBehaviour
             rb.AddForce(cam_pivot.transform.right * thrust);
         }
             
+        
 
     }
 
@@ -64,6 +66,11 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true){
             rb.AddForce(Vector3.up * jump_force);
             //Debug.Log("Jump");
+        }      
+                
+        //End level
+        if (inLevelEnd && Input.GetKeyDown(KeyCode.Space)){
+            //Debug.Log(1);
         }
             
     }
@@ -77,8 +84,33 @@ public class PlayerControl : MonoBehaviour
             UpdateItemText();
 
             Animation anim  = trigger.gameObject.GetComponent<Animation>();
+
+
+            if(trigger.gameObject.GetComponent<KeyScript>().collected != true){ //trigger anim (and prevent double trigger)
+
             anim.CrossFade("KeyFade", 0.1f);
             //trigger.gameObject.animator.Play("KeyFade");
+
+            trigger.gameObject.GetComponent<KeyScript>().collected = true;
+
+            }
+
+
+        }
+
+        if (trigger.gameObject.layer == LayerMask.NameToLayer("LevelEnd")){
+
+            inLevelEnd = true;
+
+        }
+
+    }
+
+    void OnTriggerExit(Collider trigger){
+
+       if (trigger.gameObject.layer == LayerMask.NameToLayer("LevelEnd")){
+
+            inLevelEnd = false;
 
         }
 
