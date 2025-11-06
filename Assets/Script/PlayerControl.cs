@@ -101,6 +101,8 @@ public class PlayerControl : MonoBehaviour
         if (trigger.gameObject.layer == LayerMask.NameToLayer("LevelEnd")){
 
             inLevelEnd = true;
+            AudioSource[] sfx = trigger.gameObject.GetComponents<AudioSource>();
+            sfx[0].Play();
 
         }
 
@@ -111,6 +113,8 @@ public class PlayerControl : MonoBehaviour
        if (trigger.gameObject.layer == LayerMask.NameToLayer("LevelEnd")){
 
             inLevelEnd = false;
+            AudioSource[] sfx = trigger.gameObject.GetComponents<AudioSource>();
+            sfx[1].Play();
 
         }
 
