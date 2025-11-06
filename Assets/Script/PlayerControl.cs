@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class PlayerControl : MonoBehaviour
 
@@ -23,7 +24,15 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        StartCoroutine(InitializeAfterDelay());
+       
+    }
+
+    IEnumerator InitializeAfterDelay() //coroutine pour delay le comptage sur toute la map
+    {
+        yield return new WaitForSeconds(0.1f); // wait 2 seconds
         UpdateItemText();
+        //Debug.Log("Initialized after delay");
     }
 
     void FixedUpdate()
@@ -69,7 +78,7 @@ public class PlayerControl : MonoBehaviour
         }      
                 
         //End level
-        if (inLevelEnd && Input.GetKeyDown(KeyCode.Space)){
+        if (inLevelEnd && Input.GetKeyDown(KeyCode.Space) && GlobalStats.Instance.collected_items == GlobalStats.Instance.max_items){ //check if u finished game + u are in end zone
             //Debug.Log(1);
         }
             
