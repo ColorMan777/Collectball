@@ -102,6 +102,8 @@ public class PlayerControl : MonoBehaviour
 
             AudioSource[] sfx = gameObject.GetComponents<AudioSource>();
             float vol = mapValue(rb.linearVelocity.magnitude, 0.1f, 10f, 0f, 1f);
+            float pitch = mapValue(rb.linearVelocity.magnitude, 0.1f, 10f, 0.5f, 1f);
+            sfx[2].pitch = pitch;
             sfx[2].volume = vol;
 
         }
