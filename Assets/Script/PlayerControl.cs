@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 
@@ -16,6 +17,8 @@ public class PlayerControl : MonoBehaviour
     [Header("Ground Detection Settings")]
     public float checkDistance = 0.1f;
     public LayerMask groundLayer; // Assign in inspector
+
+    public GameObject endZone;
 
     private bool isGrounded;
     private Animation keyAnim;
@@ -46,7 +49,9 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("Not grounded ❌"); */
 
         
-        if (Input.GetKey(KeyCode.W)){
+        // MOUVEMENTS
+
+        if (Input.GetKey(KeyCode.W)){ 
             //rb.AddForce(Vector3.forward * thrust);
             rb.AddForce(cam_pivot.transform.forward * thrust);
         }
@@ -78,8 +83,16 @@ public class PlayerControl : MonoBehaviour
         }      
                 
         //End level
-        if (inLevelEnd && Input.GetKeyDown(KeyCode.Space) && GlobalStats.Instance.collected_items == GlobalStats.Instance.max_items){ //check if u finished game + u are in end zone
+        if (inLevelEnd && Input.GetKeyDown(KeyCode.Space) && GlobalStats.Instance.collected_items == GlobalStats.Instance.max_items){ //check if u finished game + u are in end zone = WINNNNN
             //Debug.Log(1);
+            if (endZone.GetComponent<EndLevelScript>().next_scene_name != null){ // check is there is another level after
+                AudioSource[] sfx = GetComponents<AudioSource>(); // get audio sources
+                sfx[0].Play();
+
+                endZone.GetComponent<Animation>().CrossFade("ExitLevelAnimation", 0.1f); // next level after animation
+                rb.AddForce(Vector3.up * jump_force * 3); // go UP
+                GetComponent<Animation>().Play("PlayerAnimation"); // dissolve
+            }
         }
             
     }
@@ -87,10 +100,6 @@ public class PlayerControl : MonoBehaviour
     void OnTriggerEnter(Collider trigger){
         //Debug.Log(trigger.gameObject.layer);
         if (trigger.gameObject.layer == LayerMask.NameToLayer("Collectibles")){
-            
-            items += 1;
-            GlobalStats.Instance.collected_items = items;
-            UpdateItemText();
 
             Animation anim  = trigger.gameObject.GetComponent<Animation>();
 
@@ -101,6 +110,12 @@ public class PlayerControl : MonoBehaviour
             //trigger.gameObject.animator.Play("KeyFade");
 
             trigger.gameObject.GetComponent<KeyScript>().collected = true;
+            
+
+            items += 1;
+            GlobalStats.Instance.collected_items = items;
+            UpdateItemText();
+
 
             }
 
@@ -109,6 +124,7 @@ public class PlayerControl : MonoBehaviour
 
         if (trigger.gameObject.layer == LayerMask.NameToLayer("LevelEnd")){
 
+            endZone = trigger.gameObject;
             inLevelEnd = true;
             AudioSource[] sfx = trigger.gameObject.GetComponents<AudioSource>();
             sfx[0].Play();
@@ -131,7 +147,14 @@ public class PlayerControl : MonoBehaviour
 
     void UpdateItemText(){
 
-        itemText.text = "Items : " + items.ToString() + " / " + GlobalStats.Instance.max_items.ToString();
+        if (GlobalStats.Instance.max_items == 1){
+            itemText.text = "Key : " + items.ToString() + " / " + GlobalStats.Instance.max_items.ToString();
+
+        }
+        else {
+
+            itemText.text = "Keys : " + items.ToString() + " / " + GlobalStats.Instance.max_items.ToString();
+        }
 
     }
 

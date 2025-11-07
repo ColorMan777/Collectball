@@ -9,6 +9,7 @@ public class GlobalStats : MonoBehaviour
 
     public int max_items = 0;
     public int collected_items = 0;
+    public GameObject musicPlayer;
 
     private void Awake() 
     { 

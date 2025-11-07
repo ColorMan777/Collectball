@@ -99,6 +99,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1859694606140288508}
   - component: {fileID: 5329170021742754721}
+  - component: {fileID: 6221036180934064501}
   - component: {fileID: 1680980789440765008}
   - component: {fileID: 2490705991484230142}
   - component: {fileID: 3589317138514076979}
@@ -147,6 +148,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 0.98567843, z: 3}
   m_Center: {x: 0, y: 0.49283922, z: 0}
+--- !u!114 &6221036180934064501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608523645579782513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee95959f871d59c7090fc38d6cf79467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EndLevelScript
+  next_scene_name: 
 --- !u!82 &1680980789440765008
 AudioSource:
   m_ObjectHideFlags: 0
@@ -265,7 +279,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.9083517
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -353,6 +367,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: 1dc5b5adb81bba269b92dc4c427d1f8e, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 1dc5b5adb81bba269b92dc4c427d1f8e, type: 2}
+  - {fileID: 7400000, guid: 39d8fce035de0e1f99d1ad5d3b9e07b9, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
