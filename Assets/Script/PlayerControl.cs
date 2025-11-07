@@ -131,6 +131,11 @@ public class PlayerControl : MonoBehaviour
 
         }
 
+        if (trigger.gameObject.layer == LayerMask.NameToLayer("Limits")){ //invisible limit down the map
+
+            RestartScene();
+        }
+
     }
 
     void OnTriggerExit(Collider trigger){
@@ -158,4 +163,15 @@ public class PlayerControl : MonoBehaviour
 
     }
 
+    void RestartScene()
+    {
+    // Get the currently active scene
+    Scene currentScene = SceneManager.GetActiveScene();
+
+    // Reload it
+    SceneManager.LoadScene(currentScene.name);
+    }
+
 }
+
+

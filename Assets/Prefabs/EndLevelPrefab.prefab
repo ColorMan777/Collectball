@@ -161,6 +161,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EndLevelScript
   next_scene_name: 
+  mesh_material: {fileID: 2100000, guid: 068bbc84375946f31bf5dbc445e3e797, type: 2}
+  point_light: {fileID: 6636746924558124155}
+  start_color: {r: 0.7294118, g: 0.33333334, b: 0.827451, a: 1}
+  finish_color: {r: 0.3726415, g: 1, b: 0.5025135, a: 1}
+  speed: 1
 --- !u!82 &1680980789440765008
 AudioSource:
   m_ObjectHideFlags: 0
