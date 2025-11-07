@@ -36,7 +36,9 @@ public class EndLevelScript : MonoBehaviour
     }
 
     public void ChangeScene(){
-        DontDestroyOnLoad(GlobalStats.Instance.musicPlayer);
+        if (GlobalStats.Instance.musicPlayer != null){
+            DontDestroyOnLoad(GlobalStats.Instance.musicPlayer);
+        }
         SceneManager.LoadScene(next_scene_name);
     }
 }
