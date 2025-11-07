@@ -132,8 +132,8 @@ MonoBehaviour:
   player: {fileID: 5869416690193033723}
   playerCamera: {fileID: 7278248721620194000}
   mouseSensitivity: 300
-  max_down: 0
-  max_up: 40
+  max_down: 5
+  max_up: 25
 --- !u!1 &5869416690193033723
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,13 +900,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7278248721620194000}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13052607, y: -0, z: -0, w: 0.99144495}
-  m_LocalPosition: {x: 0, y: 1, z: -2.76}
+  m_LocalRotation: {x: 0.103340864, y: -0.0042191874, z: 0.0055392752, w: 0.9946217}
+  m_LocalPosition: {x: -0.0000000035203858, y: 1.2, z: -2.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 188277262665404799}
-  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 11.866, y: -0.424, z: 0.594}
 --- !u!20 &1781926261779691499
 Camera:
   m_ObjectHideFlags: 0
@@ -925,7 +925,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 20.784609
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -940,7 +940,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
