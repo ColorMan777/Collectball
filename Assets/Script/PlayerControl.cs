@@ -80,6 +80,8 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true){
             rb.AddForce(Vector3.up * jump_force);
             //Debug.Log("Jump");
+            AudioSource[] sfx = gameObject.GetComponents<AudioSource>();
+            sfx[1].Play();
         }      
                 
         //End level
@@ -94,6 +96,20 @@ public class PlayerControl : MonoBehaviour
                 GetComponent<Animation>().Play("PlayerAnimation"); // dissolve
             }
         }
+
+        if(rb.linearVelocity.magnitude > 0f && isGrounded){ // rolling audio with volume linked to velocity
+            //Debug.Log(rb.linearVelocity.magnitude);
+
+            AudioSource[] sfx = gameObject.GetComponents<AudioSource>();
+            float vol = mapValue(rb.linearVelocity.magnitude, 0.1f, 10f, 0f, 1f);
+            sfx[2].volume = vol;
+
+        }
+        else{
+            AudioSource[] sfx = gameObject.GetComponents<AudioSource>();
+            sfx[2].volume = Mathf.Lerp(sfx[2].volume, 0f, 0.1f);
+        }
+
             
     }
 
@@ -170,6 +186,11 @@ public class PlayerControl : MonoBehaviour
 
     // Reload it
     SceneManager.LoadScene(currentScene.name);
+    }
+
+    float mapValue(float mainValue, float inValueMin, float inValueMax, float outValueMin, float outValueMax)
+    {
+        return (mainValue - inValueMin) * (outValueMax - outValueMin) / (inValueMax - inValueMin) + outValueMin;
     }
 
 }
