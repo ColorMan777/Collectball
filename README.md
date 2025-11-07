@@ -1,6 +1,6 @@
 # CollectBall
 
-A tiny game made in 2 days with Unity 6.2
+A tiny game made in 2 days with Unity 6.2.
 
 ### Controls :
 WASD / ZQSD + Space + Mouse
