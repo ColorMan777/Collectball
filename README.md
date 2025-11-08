@@ -10,7 +10,7 @@ Rigid body physics (built-in Unity) / Level changer / Sound and 3D Sound / Colle
 
 Have fun !
 
-**Note** *: you can also get the game on itch.io : https://colorman777.itch.io/collectball*
+*Note* *: you can also get the game on itch.io : https://colorman777.itch.io/collectball*
 
 <img width="1920" height="1080" alt="CollectBall_Splash3D_01" src="https://github.com/user-attachments/assets/02517972-39bc-437e-9f11-15a7ceccdf30" />
 
