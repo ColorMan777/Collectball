@@ -1,5 +1,8 @@
 using UnityEngine;
 
+
+// DEPRECATED : USING PAUSE MENU NOW
+
 public class EndPoolScript : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -15,7 +18,7 @@ public class EndPoolScript : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape)){
 
             QuitGame();
-            Debug.Log(4);
+            //Debug.Log(4);
         }
 
     }

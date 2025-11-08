@@ -30,6 +30,7 @@ public class CamControl : MonoBehaviour
         CopyPos();
 
         if (Input.GetKey(KeyCode.Escape)){
+            Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
     }

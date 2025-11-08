@@ -18,8 +18,13 @@ public class MainMenuScript : MonoBehaviour
     }
 
     public void PlayGame(){
-        DontDestroyOnLoad(musicPlayer);
+        if (musicPlayer != null){
+            DontDestroyOnLoad(musicPlayer);
+        
+        }
+        
         SceneManager.LoadSceneAsync("Level01");
+
     }
     
     public void QuitGame()
