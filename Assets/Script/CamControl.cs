@@ -27,7 +27,7 @@ public class CamControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CopyPos();
+        //CopyPos(); // some staggering when using lerp to copy position -> moved in fixed update
 
         if (Input.GetKey(KeyCode.Escape)){
             Cursor.lockState = CursorLockMode.None;
@@ -37,6 +37,8 @@ public class CamControl : MonoBehaviour
 
     void FixedUpdate(){
 
+        CopyPos();
+
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
@@ -45,12 +47,13 @@ public class CamControl : MonoBehaviour
 
         //playerCamera.localRotation = Quaternion.Euler(0f, 0f , xRotation);
         playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f , 0f);
-        transform.Rotate(Vector3.up * mouseX);
+        transform.Rotate(Vector3.up * mouseX * 4f);
     }
 
     void CopyPos(){
 
-        transform.position = player.transform.position;
+        //transform.position = player.transform.position;
+        transform.position = Vector3.Lerp(transform.position, player.transform.position, 0.3f);
 
     }
 
