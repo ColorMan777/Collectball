@@ -29,10 +29,10 @@ public class CamControl : MonoBehaviour
     {
         //CopyPos(); // some staggering when using lerp to copy position -> moved in fixed update
 
-        if (Input.GetKey(KeyCode.Escape)){
+  /*       if (Input.GetKey(KeyCode.Escape)){
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-        }
+        } */
     }
 
     void FixedUpdate(){
@@ -42,7 +42,7 @@ public class CamControl : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        xRotation -= mouseY;
+        xRotation -= mouseY *1.5f;
         xRotation = Mathf.Clamp(xRotation, max_down, max_up); // Limite du regard vertical
 
         //playerCamera.localRotation = Quaternion.Euler(0f, 0f , xRotation);

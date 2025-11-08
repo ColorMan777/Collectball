@@ -33,7 +33,7 @@ public class PlayerControl : MonoBehaviour
 
     IEnumerator InitializeAfterDelay() //coroutine pour delay le comptage sur toute la map
     {
-        yield return new WaitForSeconds(0.1f); // wait 2 seconds
+        yield return new WaitForSeconds(0.1f); // wait
         UpdateItemText();
         //Debug.Log("Initialized after delay");
     }

@@ -15,19 +15,37 @@ public class PauseScript : MonoBehaviour
 
     void Update()
     {
+
+        if (isPaused){
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+
             // Toggle pause state on Escape key press
             isPaused = !isPaused;
             if (isPaused)
             {
+
                 PauseGame();
+
             }
             else
             {
                 ResumeGame();
+
             }
         }
+
+
     }
 
     void PauseGame()
@@ -36,19 +54,25 @@ public class PauseScript : MonoBehaviour
         Time.timeScale = 0;
         // Make PauseMenu panel visible (activate its gameObject)
         pauseMenu.SetActive(true);
+
     }
 
     public void ResumeGame()
     {
         // Set Time.timeScale back to 1 to resume gameplay
         Time.timeScale = 1;
+        isPaused = false;
         // Hide PauseMenu panel (deactivate its gameObject)
         pauseMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
     }
 
     public void GoToMainMenu(){
         Time.timeScale = 1;
         SceneManager.LoadScene(main_menu_name);
+        Cursor.lockState = CursorLockMode.None;
 
     }
 
